@@ -17,12 +17,12 @@ public class CustomerController {
 
     @PostMapping("/save-customer")
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO save(@RequestBody @Valid CustomerDTO customerDTO){
+    public CustomerDTO save(@RequestBody CustomerDTO customerDTO){
         return service.saveNewCustomer(customerDTO);
     }
 
     @PutMapping("/update-customer/{id}")
-    public CustomerDTO update(@PathVariable Long id, @RequestBody @Valid CustomerDTO customerDTO){
+    public CustomerDTO update(@PathVariable Long id, @RequestBody CustomerDTO customerDTO){
         return service.updateCustomer(id, customerDTO);
     }
 
@@ -42,6 +42,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/delete-customer/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.deleteCustomer(id);
     }
