@@ -15,10 +15,11 @@ import java.util.Optional;
 public class CustomerServiceCore implements CustomerService{
 
     private final CustomerRepository repository;
-    private final CustomerMapper mapper = new CustomerMapper();
+    private final CustomerMapper mapper;
 
-    public CustomerServiceCore(CustomerRepository repository) {
+    public CustomerServiceCore(CustomerRepository repository, CustomerMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Override
