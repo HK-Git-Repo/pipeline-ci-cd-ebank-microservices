@@ -1,6 +1,5 @@
 package kad.dev.customerservice.mapper;
 
-import jakarta.validation.constraints.Null;
 import kad.dev.customerservice.dtos.CustomerDTO;
 import kad.dev.customerservice.entities.Customer;
 import org.modelmapper.ModelMapper;
