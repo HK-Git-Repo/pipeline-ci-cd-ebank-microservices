@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id : r1
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/customer/**
+        - id: r2
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/account/**
+    discovery:
+      enabled: false
