@@ -15,4 +15,10 @@ spring:
           predicates:
             - Path=/account/**
     discovery:
-      enabled: false
+      enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    prefer-ip-address: true
