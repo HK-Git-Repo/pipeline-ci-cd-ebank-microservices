@@ -1,9 +1,11 @@
 services:
-  postgres:
-    image: "postgres:14"
-    environment:
-      - 'POSTGRES_DB=customers_db'
-      - 'POSTGRES_PASSWORD=root'
-      - 'POSTGRES_USER=root'
+  ebank-discovery-service:
+    build: ./discovery-service
+    container_name: discovery-ms
     ports:
-      - '5432:5432'
+      - "8761:8761"
+    expose:
+      - "8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+      interval: 10s
