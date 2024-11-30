@@ -17,11 +17,9 @@ public interface CustomerServiceClient {
     @GetMapping("/customers")
     @CircuitBreaker(name = "CustomerService", fallbackMethod = "getDefaultCustomers")
     List<Customer> getAllCustomers();
-
     /*
      * Default Circuit Breakers Methods Definitions
      */
-
     default Customer getDefaultCustomer(Long id, Exception e) {
         return Customer.builder()
                 .id(id)
