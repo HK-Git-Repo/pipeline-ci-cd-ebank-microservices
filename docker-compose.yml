@@ -9,3 +9,15 @@ services:
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
       interval: 10s
+  ebank-config-service:
+    build: ./config-service
+    container_name: config-ms
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://ebank-discovery-service:8761/eureka
+    depends_on:
+      ebank-discovery-service:
+        condition: service_healthy
