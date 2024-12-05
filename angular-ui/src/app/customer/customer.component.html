@@ -1,1 +1,25 @@
-<p>customer works!</p>
+<div class="section">
+  <div class="card">
+    <div class="card-title">List of Customers</div>
+    <div class="card-body">
+      <table *ngIf="customers">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.email }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

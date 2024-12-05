@@ -1,0 +1,114 @@
+services:
+  ebank-discovery-service:
+    build: ./discovery-service
+    image: ebank-discovery
+    container_name: discovery-ms
+    networks:
+      - ebank-api-network
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+      interval: 10s
+      retries: 7
+
+  ebank-config-service:
+    build: ./config-service
+    image: ebank-config
+    container_name: config-ms
+    networks:
+      - ebank-api-network
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://ebank-discovery-service:8761/eureka
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/actuator/health" ]
+      interval: 10s
+      retries: 7
+    depends_on:
+      ebank-discovery-service:
+        condition: service_healthy
+
+  ebank-gateway-service:
+    build: ./gateway-service
+    image: ebank-gateway
+    container_name: gateway_ms
+    networks:
+      - ebank-api-network
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://ebank-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://ebank-config-service:8000
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
+      retries: 9
+    depends_on:
+      ebank-config-service:
+        condition: service_healthy
+
+  ebank-customer-service:
+    build: ./customer-service
+    image: ebank-customer
+    container_name: customer_ms
+    networks:
+      - ebank-api-network
+    ports:
+      - "8081:8081"
+    expose:
+      - "8081"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://ebank-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://ebank-config-service:8000
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
+      interval: 10s
+      retries: 8
+    depends_on:
+      ebank-gateway-service:
+        condition: service_healthy
+
+  ebank-account-service:
+    build: ./account-service
+    image: ebank-account
+    container_name: account_ms
+    networks:
+      - ebank-api-network
+    ports:
+      - "8082:8082"
+    expose:
+      - "8082"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://ebank-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://ebank-config-service:8000
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/actuator/health" ]
+      interval: 10s
+      retries: 8
+    depends_on:
+      ebank-customer-service:
+        condition: service_healthy
+
+  ebank-angular-ui:
+    build: ./angular-ui
+    container_name: angular-ui
+    networks:
+      - ebank-ui-network
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+
+networks:
+  ebank-api-network:
+    driver: bridge
+  ebank-ui-network:
+    driver: bridge

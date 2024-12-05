@@ -1,1 +1,29 @@
-<p>account works!</p>
+<div class="section">
+  <div class="card">
+    <div class="card-title">List of Accounts</div>
+    <div class="card-body">
+      <table *ngIf="accounts">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Balance</th>
+          <th>Currency</th>
+          <th>Type</th>
+          <th>Customer</th>
+          <th>Created At</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let account of accounts">
+          <td>{{ account.accountId }}</td>
+          <td>{{ account.balance }}</td>
+          <td>{{ account.currency }}</td>
+          <td>{{ account.type }}</td>
+          <td>{{ account.customerId }}</td>
+          <td>{{ account.createdAt }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
