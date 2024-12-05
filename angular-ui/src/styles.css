@@ -1,1 +1,117 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  background-color: #f1f2f6;
+}
+.w-full{
+  width: 100%;
+}
+.h-full{
+  height: 100%;
+}
+.f-row {
+  display: flex;
+}
+.f-col {
+  display: flex;
+  flex-direction: column;
+}
+.align-center{
+  align-items: center;
+  align-content: center;
+}
+.justify-around{
+  justify-content: space-around;
+}
+
+.card{
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  min-width: max-content;
+  font-family: 'Arial', sans-serif;
+}
+.card-title {
+  background-color: #f9fafb;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+.card-body {
+  padding: 16px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+a.btn, .btn {
+  text-decoration: none;
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 3px;
+  background-color: rgba(167, 171, 173, 0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Base table styles */
+table {
+  width: 100%;               /* Full width inside the container */
+  border-collapse: collapse; /* Merge borders for cleaner lines */
+  font-family: 'Arial', sans-serif; /* Consistent font style */
+  font-size: 14px;           /* Readable text size */
+  margin: 16px 0;            /* Add some space above and below */
+}
+
+/* Table header styles */
+thead th {
+  background-color: #f9fafb; /* Light gray background */
+  color: #111827;           /* Dark gray text */
+  text-align: left;         /* Left align header text */
+  padding: 12px;            /* Space inside cells */
+  border-bottom: 2px solid #e5e7eb; /* Thick bottom border */
+  font-weight: bold;        /* Emphasize header text */
+}
+
+/* Table body row styles */
+tbody tr {
+  border-bottom: 1px solid #e5e7eb; /* Separator between rows */
+}
+
+/* Table cell styles */
+tbody td {
+  padding: 12px;            /* Space inside cells */
+  color: #374151;           /* Medium gray text */
+}
+
+/* Alternate row shading for better readability */
+tbody tr:nth-child(even) {
+  background-color: #f3f4f6; /* Light gray background */
+}
+
+/* Hover effect for rows */
+tbody tr:hover {
+  background-color: #e5e7eb; /* Slightly darker gray on hover */
+}
+
+/* Optional: Center-align numeric columns */
+td.numeric, th.numeric {
+  text-align: right;         /* Right-align numbers */
+}
+
+/* Optional: Responsive table */
+@media (max-width: 768px) {
+  table {
+    font-size: 12px;        /* Adjust font size for smaller screens */
+  }
+
+  thead th, tbody td {
+    padding: 8px;           /* Reduce padding for smaller screens */
+  }
+}
+
+.section {
+  padding: 20px;
+}

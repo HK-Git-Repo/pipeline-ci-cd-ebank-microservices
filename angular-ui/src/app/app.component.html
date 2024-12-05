@@ -1,3 +1,10 @@
-<ng-container>
-  <h1>{{ title | uppercase }}</h1>
-</ng-container>
+<nav class="nav">
+  <a [class.active-link]="isActive('')" routerLink="">e-Banking</a>
+  <div class="nav-links">
+    <a class="link" [class.active-link]="isActive('/customers')" routerLink="customers">Customers</a>
+    <a class="link" [class.active-link]="isActive('/accounts')" routerLink="accounts">Accounts</a>
+  </div>
+</nav>
+<section>
+  <router-outlet></router-outlet>
+</section>

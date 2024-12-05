@@ -97,6 +97,18 @@ services:
       ebank-customer-service:
         condition: service_healthy
 
+  ebank-angular-ui:
+    build: ./angular-ui
+    container_name: angular-ui
+    networks:
+      - ebank-ui-network
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+
 networks:
   ebank-api-network:
+    driver: bridge
+  ebank-ui-network:
     driver: bridge
